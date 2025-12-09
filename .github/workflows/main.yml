@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+
+jobs:
+  unit-test:
+    runs-on: ${{ matrix.os}}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+      - name: untests
+        uses: actions/checkout@v2
+
+      - name: set up Python
+        uses: actions/setup-python@v4
+
+      - name: Run Unit Tests
+        run: python -m unittest discover -v -s tests
